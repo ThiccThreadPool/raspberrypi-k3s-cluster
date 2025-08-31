@@ -6,7 +6,7 @@ kubectl create ns home-namespace
 
 echo "namespace created"
 
-kubectl create -f backingyamls/deployment.yaml
+kubectl create -f backing-yamls/deployment.yaml
 
 echo "deployment created"
 
