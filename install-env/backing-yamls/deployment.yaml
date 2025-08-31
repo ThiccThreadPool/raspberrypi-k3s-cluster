@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: led-app
+  labels:
+    app: led-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: led-app
+  template:
+    metadata:
+      labels:
+        app: led-app
+    spec:
+      containers:
+      - name: led-app
+        image: rafekpro2/led-app:latest   
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080   
+        env:
+        - name: JAVA_OPTS
+          value: "-Xms256m -Xmx512m"
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 20
