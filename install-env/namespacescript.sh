@@ -10,3 +10,9 @@ kubectl create -f backing-yamls/deployment.yaml
 
 echo "deployment created"
 
+kubectl create -f backing-yamls/service.yaml
+
+echo "service created"
+
+
+
