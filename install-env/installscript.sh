@@ -11,3 +11,4 @@ EOF
 
 
 ./namespacescript.sh
+./mqttinstall.sh
